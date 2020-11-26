@@ -11,19 +11,15 @@
  * limitations under the License.
  */
 
-import {browser, by, element, ElementArrayFinder, ElementFinder} from 'protractor';
+import { browser, by, element, ElementArrayFinder, ElementFinder } from 'protractor';
 
 export class AppPage {
   get toolbarTitle(): Promise<string> {
     return element(by.css('idlp-root mat-toolbar .title')).getText() as Promise<string>;
   }
 
-  get faceDetectionProblem(): ElementFinder {
-    return element.all(by.css('idlp-problem-card-item')).first();
-  }
-
-  get faceDetectionProblemTitle(): Promise<string> {
-    return element(by.css('idlp-problem-info .title')).getText() as Promise<string>;
+  get personDetectionProblem(): ElementFinder {
+    return element.all(by.css('idlp-problem-card-item')).get(2);
   }
 
   get infoNavigationItem(): ElementFinder {
@@ -51,11 +47,11 @@ export class AppPage {
   }
 
   get firstAssetCardItem(): ElementFinder {
-    return element.all(by.tagName('idlp-asset-card-item')).get(4);
+    return element.all(by.tagName('idlp-asset-card-item')).get(0);
   }
 
   get secondAssetCardItem(): ElementFinder {
-    return element.all(by.tagName('idlp-asset-card-item')).get(5);
+    return element.all(by.tagName('idlp-asset-card-item')).get(1);
   }
 
   get firstAssetCardItemPushButton(): ElementFinder {

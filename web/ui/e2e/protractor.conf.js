@@ -38,7 +38,7 @@ exports.config = {
 		jasmine.getEnv().addReporter(new SpecReporter({spec: {displayStacktrace: true}}));
 	},
 	params: {
-		baseUrl: 'http://localhost:4200',
+		baseUrl: 'http://localhost:8001',
 		cvat: {
 			url: 'http://localhost:8080',
 			credentials: {

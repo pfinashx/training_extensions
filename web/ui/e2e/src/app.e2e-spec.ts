@@ -12,8 +12,8 @@
  */
 
 import * as path from 'path';
-import {browser, by, element, protractor} from 'protractor';
-import {AppPage} from './app.po';
+import { browser, by, element, protractor } from 'protractor';
+import { AppPage } from './app.po';
 
 const testModelName = `test-model-${Date.now()}`;
 
@@ -47,13 +47,13 @@ describe('OpenVINO Training Extensions', () => {
     expect(page.toolbarTitle).toEqual('OpenVINO Training Extensions');
   });
 
-  it('should navigate "Face Detection" problem', () => {
-    page.faceDetectionProblem.click();
+  it('should navigate "Person Detection" problem', () => {
+    page.personDetectionProblem.click();
     browser.sleep(1000);
-    expect(page.faceDetectionProblemTitle).toEqual('Face Detection');
+    expect(page.personDetectionProblem).toEqual('Person Detection');
   });
 
-  it('should navigate "Face Detection" problem assets', () => {
+  it('should navigate "Person Detection" problem assets', () => {
     page.assetsNavigationItem.click();
     browser.sleep(1000);
     expect(page.assetCardItems.count()).toBeGreaterThan(0);
@@ -85,7 +85,7 @@ describe('OpenVINO Training Extensions', () => {
   });
 
   it('should navigate to CVAT and upload annotation for the first asset', () => {
-    const meetingTestAnnotation = 'data/meeting_test_annotation.json';
+    const meetingTestAnnotation = 'annotations/annotation_example_train.json';
     const firstAssetAnnotationPath = path.resolve(__dirname, meetingTestAnnotation);
 
     page.firstAssetCardItemActionWrapper.click();
@@ -123,7 +123,7 @@ describe('OpenVINO Training Extensions', () => {
   });
 
   it('should navigate to CVAT and upload annotation for the second asset', () => {
-    const groupTestAnnotation = 'data/group_test_annotation.json';
+    const groupTestAnnotation = 'annotations/annotation_example_val.json';
     const secondAssetAnnotationPath = path.resolve(__dirname, groupTestAnnotation);
 
     page.secondAssetCardItemActionWrapper.click();
@@ -253,7 +253,7 @@ describe('OpenVINO Training Extensions', () => {
   });
 
   it('should navigate to file browser and check if model exist', () => {
-    browser.get('http://localhost:8003/files/idlp/problem/Face_Detection/models/');
+    browser.get('http://localhost:8003/files/idlp/problem/Person_Detection/models/');
     browser.sleep(1000);
     browser.executeScript('window.scrollTo(0, document.body.scrollHeight)');
     expect(element(by.tagName(`div[aria-label="${testModelName}"]`)).isPresent()).toBeTruthy();
@@ -268,11 +268,4 @@ describe('OpenVINO Training Extensions', () => {
     expect(element(by.tagName('div[aria-label="config.py"]')).isPresent()).toBeTruthy();
     browser.sleep(1000);
   });
-
-  // afterEach(async () => {
-  //   const logs = await browser.manage().logs().get(logging.Type.BROWSER);
-  //   expect(logs).not.toContain(jasmine.objectContaining({
-  //     level: logging.Level.SEVERE,
-  //   } as logging.Entry));
-  // });
 });

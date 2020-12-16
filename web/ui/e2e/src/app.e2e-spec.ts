@@ -47,13 +47,9 @@ describe('OpenVINO Training Extensions', () => {
     expect(page.toolbarTitle).toEqual('OpenVINO Training Extensions');
   });
 
-  it('should navigate "Person Detection" problem', () => {
+  it('should navigate "Person Detection" problem assets', () => {
     page.personDetectionProblem.click();
     browser.sleep(1000);
-    expect(page.personDetectionProblem).toEqual('Person Detection');
-  });
-
-  it('should navigate "Person Detection" problem assets', () => {
     page.assetsNavigationItem.click();
     browser.sleep(1000);
     expect(page.assetCardItems.count()).toBeGreaterThan(0);
@@ -68,11 +64,11 @@ describe('OpenVINO Training Extensions', () => {
     expect(page.hasClass(page.secondAssetCardItemPullButton.element(by.tagName('div')), 'disabled')).toBeTruthy();
 
     page.firstAssetCardItemPushButton.click();
+    browser.sleep(1000);
     expect(page.firstAssetCardItemLoader.isPresent()).toBeTruthy();
 
-    browser.sleep(500);
-
     page.secondAssetCardItemPushButton.click();
+    browser.sleep(1000);
     expect(page.secondAssetCardItemLoader.isPresent()).toBeTruthy();
 
     browser.wait(until.stalenessOf(page.firstAssetCardItemLoader), 60000, 'First asset push takes too long');
@@ -85,7 +81,7 @@ describe('OpenVINO Training Extensions', () => {
   });
 
   it('should navigate to CVAT and upload annotation for the first asset', () => {
-    const meetingTestAnnotation = 'annotations/annotation_example_train.json';
+    const meetingTestAnnotation = 'annotations/annotation_person_train.json';
     const firstAssetAnnotationPath = path.resolve(__dirname, meetingTestAnnotation);
 
     page.firstAssetCardItemActionWrapper.click();
@@ -123,7 +119,7 @@ describe('OpenVINO Training Extensions', () => {
   });
 
   it('should navigate to CVAT and upload annotation for the second asset', () => {
-    const groupTestAnnotation = 'annotations/annotation_example_val.json';
+    const groupTestAnnotation = 'annotations/annotation_person_val.json';
     const secondAssetAnnotationPath = path.resolve(__dirname, groupTestAnnotation);
 
     page.secondAssetCardItemActionWrapper.click();
@@ -167,9 +163,11 @@ describe('OpenVINO Training Extensions', () => {
     expect(page.hasClass(page.secondAssetCardItemPullButton.element(by.tagName('div')), 'initial')).toBeTruthy();
 
     page.firstAssetCardItemPullButton.click();
+    browser.sleep(1000);
     expect(page.firstAssetCardItemLoader.isPresent()).toBeTruthy();
 
     page.secondAssetCardItemPullButton.click();
+    browser.sleep(1000);
     expect(page.secondAssetCardItemLoader.isPresent()).toBeTruthy();
 
     browser.wait(until.stalenessOf(page.firstAssetCardItemLoader), 60000, 'First asset pull takes too long');
@@ -234,12 +232,13 @@ describe('OpenVINO Training Extensions', () => {
     browser.sleep(500);
 
     page.fineTuneDialogSubmitButton.click();
+    browser.sleep(1000);
   });
 
   it('should wait for training complete', () => {
     const until = protractor.ExpectedConditions;
     browser.refresh();
-    browser.wait(until.presenceOf(page.inProgressRow), 60000, 'Seems test model training has not been started');
+    browser.wait(until.presenceOf(page.inProgressRow), 600000, 'Seems test model training has not been started');
     page.buildAutocomplete.click();
     browser.sleep(500);
     expect(page.buildsAutocompleteItems.isPresent()).toBeTruthy();
@@ -248,12 +247,11 @@ describe('OpenVINO Training Extensions', () => {
     browser.executeScript('document.getElementsByClassName(\'scroll-container\')[0].scrollTo(0, document.getElementsByClassName(\'scroll-container\')[0].scrollHeight)');
     expect(page.inProgressRow.isPresent()).toBeTruthy();
     browser.wait(until.stalenessOf(page.inProgressRow), 600000, 'Test model training taking too long');
-    expect(page.inProgressRow.isPresent()).toBeFalsy();
     browser.sleep(1000);
   });
 
   it('should navigate to file browser and check if model exist', () => {
-    browser.get('http://localhost:8003/files/idlp/problem/Person_Detection/models/');
+    browser.get('http://localhost:8003/files/problem/Object_Detection/Person_Detection/');
     browser.sleep(1000);
     browser.executeScript('window.scrollTo(0, document.body.scrollHeight)');
     expect(element(by.tagName(`div[aria-label="${testModelName}"]`)).isPresent()).toBeTruthy();
@@ -263,9 +261,8 @@ describe('OpenVINO Training Extensions', () => {
   it('should navigate to model content and check if model\'s artifacts exists', () => {
     browser.actions().doubleClick(element(by.tagName(`div[aria-label="${testModelName}"]`))).perform();
     browser.sleep(1000);
-    expect(element(by.tagName('div[aria-label="model.yml"]')).isPresent()).toBeTruthy();
     expect(element(by.tagName('div[aria-label="snapshot.pth"]')).isPresent()).toBeTruthy();
-    expect(element(by.tagName('div[aria-label="config.py"]')).isPresent()).toBeTruthy();
+    expect(element(by.tagName('div[aria-label="model.py"]')).isPresent()).toBeTruthy();
     browser.sleep(1000);
   });
 });

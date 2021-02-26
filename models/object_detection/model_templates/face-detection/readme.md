@@ -39,7 +39,7 @@ python ../../tools/instantiate_template.py ${MODEL_TEMPLATE} ${WORK_DIR}
 
 ### 2. Collect dataset
 
-Download the [WIDER Face](http://shuoyang1213.me/WIDERFACE/) and unpack it to the `${DATA_DIR}` folder.
+Download the [WIDER Face Training Images, WIDER Face Validation Images, Face annotations](http://shuoyang1213.me/WIDERFACE/) and unpack it to the `${DATA_DIR}` folder.
 
 ```bash
 export DATA_DIR=${WORK_DIR}/data

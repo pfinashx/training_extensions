@@ -25,7 +25,7 @@ Target datasets:
 ### 0. Change a directory in your terminal to action_recognition_2.
 
 ```bash
-cd <training_extensions>/pytorch_toolkit/action_recognition_2
+cd models/action_recognition_2
 ```
 If You have not created virtual environment yet:
 ```bash

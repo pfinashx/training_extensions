@@ -11,7 +11,7 @@ Model that is able to detect more or less horizontal text with high speed on CPU
 ### 0. Change a directory in your terminal to object_detection and activate venv.
 
 ```bash
-cd <training_extensions>/pytorch_toolkit/object_detection
+cd models/object_detection
 ```
 If You have not created virtual environment yet:
 ```bash

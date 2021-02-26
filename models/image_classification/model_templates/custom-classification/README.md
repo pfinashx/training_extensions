@@ -80,7 +80,7 @@ Also, you can stop after searching learning rate (`stop_after=True`), build a gr
 ### 0. Change a directory in your terminal to image_classification.
 
 ```bash
-cd <training_extensions>/pytorch_toolkit/image_classification
+cd models/image_classification
 ```
 If You have not created virtual environment yet:
 ```bash

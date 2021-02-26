@@ -17,7 +17,7 @@ If You have not created virtual environment yet:
 ```bash
 ./init_venv.sh
 ```
-Else:
+Activate virtual environment:
 ```bash
 . venv/bin/activate
 ```

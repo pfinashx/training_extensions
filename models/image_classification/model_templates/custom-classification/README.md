@@ -96,7 +96,7 @@ Activate virtual environment:
 ```bash
 export MODEL_TEMPLATE=`realpath ./model_templates/custom-classification/mobilenet_v3_large_1/template.yaml`
 export WORK_DIR=/tmp/my_model
-python ../tools/instantiate_template.py ${MODEL_TEMPLATE} ${WORK_DIR} --do-not-load-snapshot
+python ../../tools/instantiate_template.py ${MODEL_TEMPLATE} ${WORK_DIR} --do-not-load-snapshot
 ```
 
 ### 2. Prepare data

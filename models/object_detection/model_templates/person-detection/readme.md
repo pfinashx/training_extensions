@@ -32,7 +32,7 @@ Activate virtual environment:
 ```bash
 export MODEL_TEMPLATE=`realpath ./model_templates/person-detection/person-detection-0200/template.yaml`
 export WORK_DIR=/tmp/my_model
-python ../tools/instantiate_template.py ${MODEL_TEMPLATE} ${WORK_DIR}
+python ../../tools/instantiate_template.py ${MODEL_TEMPLATE} ${WORK_DIR}
 ```
 
 ### 2. Collect dataset

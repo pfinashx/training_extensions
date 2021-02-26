@@ -41,7 +41,7 @@ Activate virtual environment:
 ```bash
 export MODEL_TEMPLATE=`realpath ./model_templates/gesture_recognition/s3d-rgb-mobilenet-v3-stream-msasl/template.yaml`
 export WORK_DIR=/tmp/my_model
-python ../tools/instantiate_template.py ${MODEL_TEMPLATE} ${WORK_DIR}
+python ../../tools/instantiate_template.py ${MODEL_TEMPLATE} ${WORK_DIR}
 ```
 
 ### 2. Prepare data

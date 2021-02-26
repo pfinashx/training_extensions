@@ -82,6 +82,14 @@ Also, you can stop after searching learning rate (`stop_after=True`), build a gr
 ```bash
 cd <training_extensions>/pytorch_toolkit/image_classification
 ```
+If You have not created virtual environment yet:
+```bash
+./init_venv.sh
+```
+Else:
+```bash
+. venv/bin/activate
+```
 
 ### 1. Select a model template file and instantiate it in some directory.
 
